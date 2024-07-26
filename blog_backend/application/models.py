@@ -13,6 +13,7 @@ class Blog(db.Model):
     blog_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
     blog_name=db.Column(db.String(128))
     blog_content=db.Column(db.String(128))
+    blog_subtitle=db.Column(db.String(128))
     
 class Admin(db.Model):
     __tablename__='admin'

@@ -7,10 +7,17 @@
           <router-link to="/about" class="nav-item">ABOUT</router-link>
           <router-link to="/contact" class="nav-item">CONTACT</router-link>
           <router-link to="/blogs" class="nav-item">BLOGS</router-link>
-          <router-link to="/register" class="nav-item">SIGN-UP</router-link>
-          <router-link to="/login" class="nav-item">SIGN-IN</router-link>
+          <a @click="display_register" class="nav-item">SIGN-UP</a>
+          <a @click="display_login" class="nav-item">SIGN-IN</a>
+         
         </nav>
       </header>
+      <div v-if="signin" class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+         <action_component :login_component="true"/>
+      </div>
+      <div v-if="signup" class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+        <action_component :register_component="true"/>
+      </div>
   
       <main class="content">
         <h1>Welcome to the Blog Website</h1>
@@ -32,8 +39,28 @@
   
   
   <script>
+  import action_component from './action_component.vue';
   export default {
     name: "blog_index",
+    data(){
+      return{
+        signup:false,
+        signin:false,
+      }
+    },
+    methods:{
+      display_login(){
+        this.signin=!this.signin
+        this.signup=false;
+      },
+      display_register(){
+        this.signup=!this.signup
+        this.signin=false;
+      }
+    },
+    components:{
+      action_component,
+    }
     
   };
   </script>
